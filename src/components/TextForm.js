@@ -88,8 +88,8 @@ export default function TextForm(props) {
             </div>
             <div className="container my-3" style={{color:props.mode === 'light' ? 'black' : 'white'}}>
                 <h1>Text Summary:</h1>
-                <p>{text.split(" ").at(0) === ""?"0":text.trim().split(" ").length} words and {text.replace(/ /g,"").length} characters</p>
-                <p>{0.008 * (text.trim().split(" ").length-1)} Minute Read</p>
+                <p>{text.split(" ").at(0) === "" ? "0":text.trim().split(/\s+/).length} words and {text.replace(/ /g,"").length} characters</p>
+                <p>{0.008 * (text.trim().split(/\s+/).length-1)} Minute Read</p>
                 <h1>Preview</h1>
                 <textarea className="form-control" value={text}  id="box" style={{backgroundColor: props.mode === 'light' ? 'white' : '#212529',color:props.mode === 'light' ? 'black' : 'white'}} readOnly  rows="8"></textarea>
             </div>
