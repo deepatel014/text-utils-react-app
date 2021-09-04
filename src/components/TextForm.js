@@ -79,17 +79,17 @@ export default function TextForm(props) {
                         {/* <label for="exampleFormControlTextarea1">{props.label}</label> */}
                         <textarea className="form-control" value={text} type='code' onChange={handleOnChange} style={{backgroundColor: props.mode === 'light' ? 'white' : '#212529',color:props.mode === 'light' ? 'black' : 'white'}} id="exampleFormControlTextarea1" rows="8"></textarea>
                     </div>
-                    <button onClick = {handleUpClick}className= "btn btn-primary mx-2 my-2">Upper Case</button>
-                    <button onClick = {handleLoClick}className= "btn btn-primary mx-2 my-2">Lower Case</button>
-                    <button onClick={handleCopyText} className= "btn btn-primary mx-2 my-2">Copy Text</button>
-                    <button onClick={morseCode} className= "btn btn-primary mx-2 my-2">Morse Code</button>
-                    <button onClick={clearText} className= "btn btn-primary mx-2 my-2">Clear Text</button>
+                    <button disabled = {text.length===0} onClick = {handleUpClick}className= "btn btn-primary mx-2 my-2">Upper Case</button>
+                    <button disabled = {text.length===0} onClick = {handleLoClick}className= "btn btn-primary mx-2 my-2">Lower Case</button>
+                    <button disabled = {text.length===0} onClick={handleCopyText} className= "btn btn-primary mx-2 my-2">Copy Text</button>
+                    <button disabled = {text.length===0} onClick={morseCode} className= "btn btn-primary mx-2 my-2">Morse Code</button>
+                    <button disabled = {text.length===0} onClick={clearText} className= "btn btn-primary mx-2 my-2">Clear Text</button>
                     
             </div>
             <div className="container my-3" style={{color:props.mode === 'light' ? 'black' : 'white'}}>
                 <h1>Text Summary:</h1>
-                <p>{text.split(" ").at(0) === "" ? "0":text.trim().split(/\s+/).length} words and {text.replace(/ /g,"").length} characters</p>
-                <p>{0.008 * (text.trim().split(/\s+/).length-1)} Minute Read</p>
+                <p>{text.split(" ").filter((element)=>{return element.length !== 0}).length} words and {text.replace(/ /g,"").length} characters</p>
+                <p>{0.008 * (text.split(" ").filter((element)=>{return element.length !== 0}).length)} Minute Read</p>
                 <h1>Preview</h1>
                 <textarea className="form-control" value={text}  id="box" style={{backgroundColor: props.mode === 'light' ? 'white' : '#212529',color:props.mode === 'light' ? 'black' : 'white'}} readOnly  rows="8"></textarea>
             </div>
