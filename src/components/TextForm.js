@@ -14,6 +14,7 @@ export default function TextForm(props) {
         // console.log(area.textContent);
         area.select();
         document.execCommand('copy');
+        document.getSelection().removeAllRanges();
         props.showAlert("Text has been copied to the Clipboard!","success");
         
     }
@@ -88,8 +89,8 @@ export default function TextForm(props) {
             </div>
             <div className="container my-3" style={{color:props.mode === 'light' ? 'black' : 'white'}}>
                 <h1>Text Summary:</h1>
-                <p>{text.split(" ").filter((element)=>{return element.length !== 0}).length} words and {text.replace(/ /g,"").length} characters</p>
-                <p>{0.008 * (text.split(" ").filter((element)=>{return element.length !== 0}).length)} Minute Read</p>
+                <p>{text.split(/\s+/).filter((element)=>{return element.length !== 0}).length} words and {text.replace(/ /g,"").length} characters</p>
+                <p>{0.008 * (text.split(/\s+/).filter((element)=>{return element.length !== 0}).length)} Minute Read</p>
                 <h1>Preview</h1>
                 <textarea className="form-control" value={text}  id="box" style={{backgroundColor: props.mode === 'light' ? 'white' : '#212529',color:props.mode === 'light' ? 'black' : 'white'}} readOnly  rows="8"></textarea>
             </div>
